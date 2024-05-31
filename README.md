@@ -2,19 +2,19 @@
 This project is designed to log the flow rate of a liquid over time, displaying real-time data on an LCD and storing the data on an SD card. The system utilizes an Arduino, a flow sensor, an LCD, an RTC (Real Time Clock), and an SD card module.
 
 ## Components
-* Arduino (e.g., Arduino Mega 2560)
-* Hall effect flow sensor
-* LiquidCrystal_I2C display
-* DS3231 RTC module
-* SD card module
-* Push button (for recording control)
-* Connecting wires
+1. Arduino (e.g., Arduino Mega 2560)
+2. Hall effect flow sensor
+3. LiquidCrystal_I2C display
+4. DS3231 RTC module
+5. SD card module
+6. Push button (for recording control)
+7. Connecting wires
 ## Libraries Used
-* Wire.h
-* LiquidCrystal_I2C.h
-* DS3231.h
-* SPI.h (Pre-loaded with Arduino)
-* SD.h (Pre-loaded with Arduino)
+1. Wire.h
+2. LiquidCrystal_I2C.h
+3. DS3231.h
+4. SPI.h (Pre-loaded with Arduino)
+5. SD.h (Pre-loaded with Arduino)
 ## Circuit Connections
 1. Flow sensor:
 * Signal pin to Arduino digital pin 2
@@ -63,7 +63,8 @@ void flow(): ISR for flow sensor to count pulses.
 void lcdPrint(): Updates the LCD with current time and flow rate.
 void Initialize_SDcard(): Initializes the SD card and creates the log file.
 void writeSDcard(): Writes the flow rate data to the SD card if recording is enabled.
-void rec(): ISR for the recording control button to toggle the recording state.```
+void rec(): ISR for the recording control button to toggle the recording state.
+```
 
 ## Usage
 1. Connect all components as per the circuit connections.
