@@ -38,32 +38,46 @@ This project is designed to log the flow rate of a liquid over time, displaying 
 * Connect the components as described in the circuit connections section.
 * Install the required libraries (Wire.h, LiquidCrystal_I2C.h, DS3231.h, SPI.h, and SD.h) if they are not already available in your Arduino IDE.
 ## Code Overview
-```Global Variables
-const int chipSelect = 53; - Chip select pin for SD card.
-int flowPin = 2; - Pin connected to the flow sensor.
-int recBtn = 3; - Pin connected to the recording control button.
-double flowRate; - Variable to store the calculated flow rate.
+```
+Global Variables
+int flowrate_sensor_pin = 2; - Pin connected to the flow sensor.
 volatile int count; - Counter for the flow sensor pulses.
-unsigned long currentTime, cloopTime; - Time variables for calculating flow rate.
+unsigned long cloopTime; - Time variable for calculating flow rate.
 volatile byte state = 0; - State variable to control recording.
 LiquidCrystal_I2C lcd(0x27, 16, 2); - LCD object.
 DS3231 rtc(SDA, SCL); - RTC object.
 Setup Function
-Initialize pins for flow sensor and button.
-Set up interrupts for flow sensor and button.
-Initialize LCD and RTC.
-Initialize SD card.
+void setup(): 
+Sets up necessary resources.
+Initializes pins for flow sensor and button.
+Sets up interrupts for flow sensor and button.
+Initializes LCD and RTC.
+Initializes SD card.
+
 Loop Function
-Read flow sensor data and calculate flow rate.
-Write data to SD card if recording is enabled.
-Display data on the LCD.
+void loop():
+Main program that runs in a loop.
+Reads flow sensor data and calculates flow rate.
+Writes data to SD card if recording is enabled.
+Displays data on the LCD.
+
 Function Descriptions
-void readFls(): Reads the flow sensor data and calculates the flow rate.
-void flow(): ISR for flow sensor to count pulses.
-void lcdPrint(): Updates the LCD with current time and flow rate.
-void Initialize_SDcard(): Initializes the SD card and creates the log file.
-void writeSDcard(): Writes the flow rate data to the SD card if recording is enabled.
-void rec(): ISR for the recording control button to toggle the recording state.
+int read_flowrate():
+Reads the flow sensor data and calculates the flow rate.
+Returns the flow rate.
+void flow():
+ISR for flow sensor to count pulses.
+void lcd_print(int flowrate):
+Updates the LCD with current time and flow rate.
+Takes flowrate as a parameter.
+void Initialize_SDcard():
+Initializes the SD card and creates the log file.
+void write_SDcard(int flowrate):
+Writes the flow rate data to the SD card if recording is enabled.
+Takes flowrate as a parameter.
+void rec():
+ISR for the recording control button to toggle the recording state.
+
 ```
 
 ## Usage
